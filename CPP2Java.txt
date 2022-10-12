@@ -1,0 +1,149 @@
+					<C++ to JAVA>
+
+#include --> import java.util.*; etc
+
+main function inside a class 
+public class Main{
+	public static void main(String[] args)
+{		Scanner scn = new Scanner(System.in);
+		int n = scn.nextInt(); --> cin>>
+		String s = scn.nextLine(); --> cin.getline (y_name, MAX_NAME_LEN);
+		// if next used simple as single input
+}
+}
+
+loops and conditions same
+
+data-types : byte , short , int , long {1,2,4,8byte} // all signed 
+		char (2) , float(4) , double(8) , bool
+
+no pointers in java , so to swap can make static int in class and then swap in a static void function (public)
+
+int []arr = new int[5] --> makes arr in heap / no other wway
+
+can print as for(int val: arr){System.out.println(val)}//for each
+
+2D array -->int[2][3] arr; // 2r 3c , 012's 2 sets 0set and 1set and that's rep(stack understanding)
+--> int*[2] arr; arr[0]=new int[3] , arr[1]=new int[3]; arr of pointer that points to arrays
+int**arr = new int*[2];arr[0]=new int[3]..... //array of pointers that points to pointer of array that pointss to array // fully in heap
+IN JAVA: int[][] arr= new int[2][3]; //for uneven length int [][]arr=new int[2][]; , arr[0]=new int[3] etc;
+to print 2d for(int i=0;i<arr.length//row;i++){for(int j=0;j<arr[i].length//col;j++)...
+
+for making class object if class= Point ; then Point p=new Point();
+Rect r = new Rect(); r.tl=new Point() .... i.e. kind of dynamic allocation always
+
+				ArrayList (vector alt)
+//when vector<cpp> made ->it has size ,cap , and dataPtrs that pts to an array . when that array fills up then another array of double size made and data is copied to that array
+//better to pass vector as reference as the dataPtr will point to another new array when a same vector is copied . but it's automatic in case of java
+
+ArrayList<Integer> list = new ArrayList<>();
+//same as array but does not look like it
+list.size() gives size
+list.add(1) adds/ ie push_back
+list.add(1,1000) inserts at 1st index and pushes elements forward
+int val = list.get(1) gives 1st index val //cant write list[1]
+list.set(1,2000) updates 1st idx to 2000 val
+list.remove(1) rem 1st and size --;
+set updates , add adds
+ArrayList<String> l2 = new ArrayList<>(); //arraylist of strings
+can use simple for loop and .size & also for(int val1: list) System.out.print(val1)
+//can also directly print System.out.println(list) <prints in [] brackets>
+
+				Stack & Queue exists too
+Stack<Integer> st = new Stack<>();
+st.push(10);
+st.peek();
+st.pop();
+
+
+ArrayDequeue<Integer> que = new ArrayDequeue<>();
+que.addLast(10);
+que.getFirst(); and removeFirst()
+
+				Strings,stringBuilders & ArrayLists
+Scanner scn = new Scanner(System.in);
+String s=scn.nextLine();
+s.length;
+char c = s.charAt(0);
+//cant change value of a character unlike set() in array
+
+s.substring(0,2) gives 2 first chars can also use only one index and will give substr upto last char
+string can concat with + even with integer or any other (evaluate from L2R so take care of +)
+s.split(" ") gives string as " " being a split point {String[]parts = s.split(" "); //puts the val in array indices}
+
+				String mem , interning , new , immutability , performance 					equals and ==
+
+creating string using direct addressing for more than one time doesn't create new address but puts old address from pool to the new string(same shell) -->interning /to opt space
+String s = new String("Hello"); //no interning done ; new shell that points to same char array
+
+String a = "Java"; String b = "Java"; System.out.println(a == b); // True
+String c = new String("Java"); String d = new String("Java"); System.out.println(c == d); // False
+String e = "JDK";
+String f =  new String("JDK");
+System.out.println(e == f);  // False
+
+interning what why impact-
+----------------------------------------------------------------------------------------------
+== checks address only equals checks character by character
+dont use == in strings  use equals
+s1.equals(s2) first checks address then checks char by char
+
+immutability --> reference is mutable but instance aint.ie can't change characters of the string but can change where string points to
+/*
+	String s ="-";
+		for(int i=0;i<s.length();i++) s+=i ; // is O(n*n) and not O(n) as first copies at new location and then adds . because strings ar immutable
+
+*/
+
+				String Builder
+StringBuilder sb = new StringBuilder("Hello"); //same as string but becomes mutable using setCharAt(0,'c'); //can also insert character in it sb.insert(2,'y') , can also del using sb.deleteCharAt(2); //can also sb.append('f'); //same length() function and that loop is also now O(n)
+
+				HashMap
+out of order insertions
+HashMap<String,Integer> hm = new HashMap<>();
+does most operations in O(1)
+hm.put(val,key) --> can update or create new val
+hm.get(val) --> gives key or null
+hm.containsKey(key); //boolean
+
+
+Set<String> keys = hm.keySet(); //gives all keys // might not be in order
+	for(String key: hm.keySet())
+		{
+		  Integer val = hm.get(key);
+		  System.out.println(key + " " + val);
+			}
+
+				PriorityQueue
+
+add remove peek functions 
+works in priorities order (in rank list) by default removes lower val and peek gives that too . peek - O(1) and O(logn) add rem
+
+PriorityQueue<Integer> pq = new PriorityQueue<>();
+int[] ranks = {22,99,3,11,88,4,1};
+
+for(int val : ranks)
+{
+	pq.add(val); // O(nlogn)
+}
+
+while(pq.size() > 0) {
+		System.out.println(pq.peek())
+;		pq.remove();
+		}
+// O(nlogn)
+
+This is heap sort nlogn O
+
+
+to get big val first use Collections.reverseOrder() in () after new pq<>(here)
+
+
+
+
+
+
+
+
+
+
